@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "https://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+
+version = "1.0"
+group = "lordgolias.ic2-bc-fuel-bridge" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "ic2-bc-fuel-bridge"
+
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+repositories {
+    maven {
+        name = "ic2"
+        url = "http://maven.ic2.player.to/"
+    }
+}
+
+minecraft {
+    version = "1.12.2-14.23.5.2814"
+    runDir = "run"
+    mappings = "stable_39"
+}
+
+dependencies {
+    compile 'net.industrial-craft:industrialcraft-2:2.8.111-ex112:api'
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace variables in mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

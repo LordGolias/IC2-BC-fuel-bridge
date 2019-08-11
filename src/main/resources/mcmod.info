@@ -1,0 +1,15 @@
+[
+{
+  "modid": "ic2_bc_fuel_bridge",
+  "name": "IC2-BC fuel bridge",
+  "description": "Makes IC2's Semifluid Generator accept Buildcraft's fuels.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/LordGolias/IC2-BC-fuel-bridge",
+  "updateUrl": "",
+  "authorList": ["LordGolias"],
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
